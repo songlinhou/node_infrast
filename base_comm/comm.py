@@ -187,7 +187,7 @@ class Communication:
     
     if params:
       if type(params) == dict:
-      params = json.dumps(params)
+        params = json.dumps(params)
       elif type(params) == str:
         # to find out whether it is legal json 
         json.loads(params)
