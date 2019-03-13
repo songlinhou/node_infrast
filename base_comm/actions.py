@@ -18,7 +18,7 @@ import json
 import os,threading
 import logging
 from global_states import states
-from gossip.gossip import *
+from gossip.actions import *
 
 
 logging.basicConfig(level=logging.DEBUG,format='(%(threadName)-9s) %(message)s',)

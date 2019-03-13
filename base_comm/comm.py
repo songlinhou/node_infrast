@@ -184,7 +184,15 @@ class Communication:
     timeformat = self.global_conf['timeformat']
     timestamp = datetime.strftime(now,timeformat)
     resp['timestamp'] = timestamp
+    
     if params:
+      if type(params) == dict:
+      params = json.dumps(params)
+      elif type(params) == str:
+        # to find out whether it is legal json 
+        json.loads(params)
+      else:
+        raise Exception('ARGWRONGTYPE','params must be dict or json-str but got {}'.format(type(params)))
       resp['params'] = params
     peerObj = self.get_single_peer(peerID)
     if not peerObj:
@@ -465,6 +473,7 @@ class Communication:
         return jsonify(resp)
       if 'params' in data.keys():
         params = data['params']
+        params = json.loads(params)
         output = method_to_call(state,params)
         resp = {
           'output':output

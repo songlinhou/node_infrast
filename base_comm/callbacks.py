@@ -1,3 +1,4 @@
+from gossip.callbacks import *
 
 def print_params(state,params):
   """
@@ -24,7 +25,7 @@ def on_join_peers(state,params):
   
 
 def on_peer_request(state,params):
-  return "Hello,I get this"
+  return "Hello params=" + params['content']
 
 
 

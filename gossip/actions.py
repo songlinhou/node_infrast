@@ -4,15 +4,18 @@ Define gossip related routing rules.
 The first two parameters should be always defined.
 """
 #from base_comm.actions import Actions
+import json
 
-def send_ask_for_peer_request(comm,peerID):
+def send_ask_for_peer_request(comm,peerID,content):
   """
   {
-    "peerID":"string"
+    "peerID":"string",
+    "content":"string"
   }
   """
   callback = 'on_peer_request'
-  output = comm.send(peerID,callback)
+  params = json.dumps({"content":content})
+  output = comm.send(peerID,callback,params)
   return output
 
 def hello_here(comm,content):
