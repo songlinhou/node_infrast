@@ -39,4 +39,4 @@ comm.setup_gossip_route()
 comm.set_attributes(node_info)
 
 
-app.run(host='0.0.0.0', port=8088)
+app.run(host='0.0.0.0', port=8082)

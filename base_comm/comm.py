@@ -179,11 +179,14 @@ class Communication:
     from datetime import datetime
     resp = {}
     resp['callback'] = callback
-    resp['fromID'] = self.nodeID
+    resp['state'] = {}
+    resp['state']['fromID'] = self.nodeID
     now = datetime.now()
     timeformat = self.global_conf['timeformat']
     timestamp = datetime.strftime(now,timeformat)
-    resp['timestamp'] = timestamp
+    resp['state']['timestamp'] = timestamp
+    resp['state']['fromID'] = self.nodeID
+    resp['state']['toID'] = peerID
     
     if params:
       if type(params) == dict:
@@ -202,6 +205,7 @@ class Communication:
       peerID = peerObj['peerName']
       request_url = url + '/recv'
       print 'request_url=',request_url
+      print 'json=',resp
       r = requests.post(request_url,json=resp)
       if r.ok:
         ret = r.json()
@@ -452,6 +456,7 @@ class Communication:
         callback = data['callback']
       if 'state' in data.keys():
         state = data['state']
+      print 'from /recv state=',state
       if not callback:
         message = 'Callback is not given. The message will not be processed furthermore.'
         resp = {

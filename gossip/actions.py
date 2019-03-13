@@ -18,6 +18,16 @@ def send_ask_for_peer_request(comm,peerID,content):
   output = comm.send(peerID,callback,params)
   return output
 
+def send_ping_request(comm,peerID):
+  """
+  {
+    "peerID":"string"
+  }
+  """
+  callback = 'reply_ping_with_pong'
+  output = comm.send(peerID,callback)
+  return output
+
 def hello_here(comm,content):
   print 'hello',content
   return 'hello_here'+str(content)
