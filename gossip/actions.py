@@ -1,7 +1,7 @@
 """
 Define gossip related routing rules.
 
-The first two parameters should be always defined.
+The first parameter should be always defined even you do not require it.
 """
 #from base_comm.actions import Actions
 import json
@@ -26,7 +26,8 @@ def send_ping_request(comm,peerID):
   """
   callback = 'reply_ping_with_pong'
   output = comm.send(peerID,callback)
-  return output
+  print 'output=',output
+  return list(output.keys())
 
 def hello_here(comm,content):
   print 'hello',content
